@@ -19,3 +19,9 @@ $factory->define(CodeDelivery\Models\User::class, function (Faker\Generator $fak
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(CodeDelivery\Models\Category::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
