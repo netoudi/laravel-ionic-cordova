@@ -27,7 +27,7 @@ class CategoriesController extends Controller
 
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.categories.form');
     }
 
     public function store(AdminCategoryRequest $request)
@@ -41,7 +41,7 @@ class CategoriesController extends Controller
     {
         $category = $this->repository->find($id);
 
-        return view('admin.categories.edit', compact('category'));
+        return view('admin.categories.form', compact('category'));
     }
 
     public function update(AdminCategoryRequest $request, $id)
@@ -51,5 +51,10 @@ class CategoriesController extends Controller
         return redirect()->route('admin.categories.index');
     }
 
+    public function destroy($id)
+    {
+        $this->repository->delete($id);
 
+        return redirect()->route('admin.categories.index');
+    }
 }
