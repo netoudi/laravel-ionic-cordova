@@ -4,8 +4,8 @@ namespace CodeDelivery\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodeDelivery\Repositories\ClientRepository;
 use CodeDelivery\Models\Client;
+use CodeDelivery\Models\User;
 
 /**
  * Class ClientRepositoryEloquent
@@ -29,5 +29,12 @@ class ClientRepositoryEloquent extends BaseRepository implements ClientRepositor
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function create(array $data)
+    {
+        $user = User::create($data['user']);
+
+        $user->client()->save(new Client($data));
     }
 }
