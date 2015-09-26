@@ -23,7 +23,7 @@ class ClientsController extends Controller
 
     public function index()
     {
-        $clients = $this->repository->paginate(5);
+        $clients = $this->repository->paginate();
 
         return view('admin.clients.index', compact('clients'));
     }

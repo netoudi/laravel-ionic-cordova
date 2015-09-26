@@ -33,7 +33,7 @@ class UserTableSeeder extends Seeder
             $u->save();
         });
 
-        factory(User::class, 10)->create()->each(function ($u) {
+        factory(User::class, 20)->create()->each(function ($u) {
             $u->client()->save(factory(Client::class)->make());
         });
     }

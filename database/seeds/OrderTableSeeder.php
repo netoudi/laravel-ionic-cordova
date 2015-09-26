@@ -13,7 +13,7 @@ class OrderTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Order::class, 10)->create()->each(function ($o) {
+        factory(Order::class, 20)->create()->each(function ($o) {
             $maxItem = rand(1, 10);
             for ($i = 0; $i <= $maxItem; $i++) {
                 $o->items()->save(factory(OrderItem::class)->make());

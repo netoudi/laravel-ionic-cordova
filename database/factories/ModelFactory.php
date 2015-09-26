@@ -46,7 +46,7 @@ $factory->define(CodeDelivery\Models\Client::class, function (Faker\Generator $f
 
 $factory->define(CodeDelivery\Models\Order::class, function (Faker\Generator $faker) {
     return [
-        'client_id' => rand(1, 10),
+        'client_id' => rand(1, 20),
         'user_deliveryman_id' => rand(1, 5),
         'total' => rand(10, 500),
         'status' => rand(1, 3),
@@ -55,7 +55,7 @@ $factory->define(CodeDelivery\Models\Order::class, function (Faker\Generator $fa
 
 $factory->define(CodeDelivery\Models\OrderItem::class, function (Faker\Generator $faker) {
     return [
-        'product_id' => rand(1, 10),
+        'product_id' => rand(1, 30),
         'price' => rand(10, 500),
         'qtd' => rand(1, 3),
     ];

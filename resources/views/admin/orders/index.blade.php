@@ -6,7 +6,7 @@
 
         <h3>Pedidos</h3>
 
-        <table class="table table-bordered">
+        <table class="table table-bordered mrgT50">
             <thead>
                 <th width="5%">Id</th>
                 <th>Cliente</th>
