@@ -43,3 +43,20 @@ $factory->define(CodeDelivery\Models\Client::class, function (Faker\Generator $f
         'zipcode' => $faker->postcode
     ];
 });
+
+$factory->define(CodeDelivery\Models\Order::class, function (Faker\Generator $faker) {
+    return [
+        'client_id' => rand(1, 10),
+        'user_deliveryman_id' => rand(1, 5),
+        'total' => rand(10, 500),
+        'status' => rand(1, 3),
+    ];
+});
+
+$factory->define(CodeDelivery\Models\OrderItem::class, function (Faker\Generator $faker) {
+    return [
+        'product_id' => rand(1, 10),
+        'price' => rand(10, 500),
+        'qtd' => rand(1, 3),
+    ];
+});
