@@ -44,4 +44,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.chekrole', 'as' => 'adm
     Route::get('orders/destroy/{id}', ['as' => 'orders.destroy', 'uses' => 'OrdersController@destroy']);
     Route::get('orders/{id}', ['as' => 'orders.view', 'uses' => 'OrdersController@view']);
 
+    Route::get('cupoms', ['as' => 'cupoms.index', 'uses' => 'CupomsController@index']);
+    Route::get('cupoms/create', ['as' => 'cupoms.create', 'uses' => 'CupomsController@create']);
+    Route::get('cupoms/edit/{id}', ['as' => 'cupoms.edit', 'uses' => 'CupomsController@edit']);
+    Route::post('cupoms/update/{id}', ['as' => 'cupoms.update', 'uses' => 'CupomsController@update']);
+    Route::post('cupoms/store', ['as' => 'cupoms.store', 'uses' => 'CupomsController@store']);
+    Route::get('cupoms/destroy/{id}', ['as' => 'cupoms.destroy', 'uses' => 'CupomsController@destroy']);
+
 });
