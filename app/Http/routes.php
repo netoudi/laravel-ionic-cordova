@@ -12,10 +12,24 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('auth/login');
+});
+
+Route::get('/home', function () {
+    if (Auth::user()->role == "admin") {
+        return redirect('/admin');
+    } elseif (Auth::user()->role == "client") {
+        return redirect('/customer');
+    }
+
+    return redirect('auth/login');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth.chekrole:admin', 'as' => 'admin.'], function () {
+
+    Route::get('/', function () {
+        return view('admin.index');
+    });
 
     Route::get('categories', ['as' => 'categories.index', 'uses' => 'CategoriesController@index']);
     Route::get('categories/create', ['as' => 'categories.create', 'uses' => 'CategoriesController@create']);
@@ -54,6 +68,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.chekrole:admin', 'as' =
 });
 
 Route::group(['prefix' => 'customer', 'middleware' => 'auth.chekrole:client', 'as' => 'customer.'], function () {
+
+    Route::get('/', function () {
+        return view('customer.index');
+    });
 
     Route::get('order', ['as' => 'order.index', 'uses' => 'CheckoutController@index']);
     Route::get('order/create', ['as' => 'order.create', 'uses' => 'CheckoutController@create']);
