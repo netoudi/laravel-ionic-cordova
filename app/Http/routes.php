@@ -79,6 +79,16 @@ Route::group(['prefix' => 'customer', 'middleware' => 'auth.chekrole:client', 'a
 
 });
 
-Route::post('oauth/access_token', function() {
+Route::post('oauth/access_token', function () {
     return Response::json(Authorizer::issueAccessToken());
+});
+
+Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api.'], function () {
+
+    Route::get('teste', function () {
+        return [
+            'msg' => 'Você está acessando um endpoint protegido pelo OAuth2.'
+        ];
+    });
+
 });
