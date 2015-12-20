@@ -25,7 +25,7 @@ Route::get('/home', function () {
     return redirect('auth/login');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth.chekrole:admin', 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth.checkrole:admin', 'as' => 'admin.'], function () {
 
     Route::get('/', function () {
         return view('admin.index');
@@ -67,7 +67,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.chekrole:admin', 'as' =
 
 });
 
-Route::group(['prefix' => 'customer', 'middleware' => 'auth.chekrole:client', 'as' => 'customer.'], function () {
+Route::group(['prefix' => 'customer', 'middleware' => 'auth.checkrole:client', 'as' => 'customer.'], function () {
 
     Route::get('/', function () {
         return view('customer.index');
@@ -85,10 +85,24 @@ Route::post('oauth/access_token', function () {
 
 Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api.'], function () {
 
-    Route::get('teste', function () {
-        return [
-            'msg' => 'Você está acessando um endpoint protegido pelo OAuth2.'
-        ];
+    Route::group(['prefix' => 'client', 'middleware' => 'oauth.checkrole:client', 'as' => 'client.'], function () {
+
+        Route::get('orders', function () {
+            return [
+                'msg' => 'Client'
+            ];
+        });
+
+    });
+
+    Route::group(['prefix' => 'deliveryman', 'middleware' => 'oauth.checkrole:deliveryman', 'as' => 'deliveryman.'], function () {
+
+        Route::get('orders', function () {
+            return [
+                'msg' => 'Deliveryman'
+            ];
+        });
+
     });
 
 });
