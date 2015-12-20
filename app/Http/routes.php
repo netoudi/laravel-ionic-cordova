@@ -87,11 +87,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api.'], funct
 
     Route::group(['prefix' => 'client', 'middleware' => 'oauth.checkrole:client', 'as' => 'client.'], function () {
 
-        Route::get('orders', function () {
-            return [
-                'msg' => 'Client'
-            ];
-        });
+        Route::resource('orders', 'Api\Client\ClientCheckoutController', ['except' => ['create', 'edit', 'destroy']]);
 
     });
 
