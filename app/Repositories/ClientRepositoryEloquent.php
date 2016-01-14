@@ -2,10 +2,10 @@
 
 namespace CodeDelivery\Repositories;
 
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
 use CodeDelivery\Models\Client;
 use CodeDelivery\Models\User;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class ClientRepositoryEloquent
@@ -13,6 +13,8 @@ use CodeDelivery\Models\User;
  */
 class ClientRepositoryEloquent extends BaseRepository implements ClientRepository
 {
+    protected $skipPresenter = true;
+
     /**
      * Specify Model class name
      *
@@ -36,5 +38,10 @@ class ClientRepositoryEloquent extends BaseRepository implements ClientRepositor
         $user = User::create($data['user']);
 
         $user->client()->save(new Client($data));
+    }
+
+    public function presenter()
+    {
+        return \CodeDelivery\Presenters\ClientPresenter::class;
     }
 }

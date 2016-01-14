@@ -20,7 +20,7 @@ class Order extends Model implements Transformable
 
     public function client()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function items()
@@ -30,7 +30,7 @@ class Order extends Model implements Transformable
 
     public function deliveryman()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_deliveryman_id', 'id');
     }
 
     public function cupom()
