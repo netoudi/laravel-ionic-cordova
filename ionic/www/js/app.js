@@ -44,6 +44,12 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers'])
                 url: '/login',
                 templateUrl: 'templates/login.html',
                 controller: 'LoginCtrl'
+            })
+            .state('home', {
+                url: '/home',
+                templateUrl: 'templates/home.html',
+                controller: function () {
+                }
             });
 
         //$urlRouterProvider.otherwise('/');
