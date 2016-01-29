@@ -92,6 +92,7 @@ Route::group(['middleware' => 'cors'], function () {
         Route::group(['prefix' => 'client', 'middleware' => 'oauth.checkrole:client', 'as' => 'client.'], function () {
 
             Route::resource('orders', 'Api\Client\ClientCheckoutController', ['except' => ['create', 'edit', 'destroy']]);
+            Route::get('products', 'Api\Client\ClientProductController', ['except' => ['create', 'edit', 'update', 'destroy']]);
 
         });
 
