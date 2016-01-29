@@ -64,7 +64,7 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
             .state('client', {
                 abstract: true,
                 url: '/client',
-                template: '<ui-view/>'
+                template: '<ion-nav-view/>'
             })
             .state('client.checkout', {
                 url: '/checkout',
