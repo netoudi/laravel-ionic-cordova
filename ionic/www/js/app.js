@@ -6,7 +6,13 @@
 
 angular.module('starter.controllers', []);
 
-angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers'])
+angular.module('starter.services', [])
+
+angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'starter.services', 'ngResource'])
+
+    .constant('appConfig', {
+        baseUrl: 'http://localhost:8000'
+    })
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
