@@ -52,6 +52,28 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers'])
                 url: '/home',
                 templateUrl: 'templates/home.html',
                 controller: 'HomeCtrl'
+            })
+
+            // CLIENT
+            .state('client', {
+                abstract: true,
+                url: '/client',
+                template: '<ui-view/>'
+            })
+            .state('client.checkout', {
+                url: '/checkout',
+                templateUrl: 'templates/client/checkout.html',
+                controller: 'ClientCheckoutCtrl'
+            })
+            .state('client.checkout-item-detail', {
+                url: '/checkout/detail/:item',
+                templateUrl: 'templates/client/checkout_item_detail.html',
+                controller: 'ClientCheckoutDetailCtrl'
+            })
+            .state('client.view-products', {
+                url: '/view-products',
+                templateUrl: 'templates/client/view_products.html',
+                controller: 'ClientViewProductCtrl'
             });
 
         //$urlRouterProvider.otherwise('/');
