@@ -1,11 +1,11 @@
 <ion-view>
-    <ion-nav-title>Code Delivery</ion-nav-title>
+    <ion-nav-title>Nossos produtos</ion-nav-title>
     <div class="bar bar-subheader">
         <h2 class="title">Escolha seu produto</h2>
     </div>
     <ion-content class="padding has-subheader">
         <ion-list>
-            <ion-item ng-repeat="o in products">
+            <ion-item ng-repeat="o in products" ng-click="addItem(o)">
                 {{ o.name }}
                 <span class="item-note">
                     <i class="ion ion-cash"> {{ o.price }}</i>

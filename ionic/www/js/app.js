@@ -67,14 +67,20 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
                 template: '<ion-nav-view/>'
             })
             .state('client.checkout', {
+                cache: false,
                 url: '/checkout',
                 templateUrl: 'templates/client/checkout.html',
                 controller: 'ClientCheckoutCtrl'
             })
             .state('client.checkout-item-detail', {
-                url: '/checkout/detail/:item',
+                url: '/checkout/detail/:index',
                 templateUrl: 'templates/client/checkout_item_detail.html',
                 controller: 'ClientCheckoutDetailCtrl'
+            })
+            .state('client.checkout-successful', {
+                url: '/checkout/successful',
+                templateUrl: 'templates/client/checkout_successful.html',
+                controller: 'ClientCheckoutSuccessfulCtrl'
             })
             .state('client.view-products', {
                 url: '/view-products',
