@@ -8,7 +8,9 @@ angular.module('starter.controllers', []);
 
 angular.module('starter.services', [])
 
-angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'starter.services', 'ngResource'])
+angular.module('starter.filters', [])
+
+angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'starter.services', 'starter.filters', 'ngResource'])
 
     .constant('appConfig', {
         baseUrl: 'http://localhost:8000'
@@ -86,6 +88,11 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
                 url: '/view-products',
                 templateUrl: 'templates/client/view_products.html',
                 controller: 'ClientViewProductCtrl'
+            })
+            .state('client.orders', {
+                url: '/orders',
+                templateUrl: 'templates/client/orders.html',
+                controller: 'ClientOrdersCtrl'
             });
 
         //$urlRouterProvider.otherwise('/');
