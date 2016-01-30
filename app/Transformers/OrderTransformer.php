@@ -25,8 +25,9 @@ class OrderTransformer extends TransformerAbstract
         return [
             'id' => (int)$model->id,
             'total' => (float)$model->total,
+            'total_items' => $model->getTotalItems(),
             'status' => (int)$model->status,
-            'created' => $model->created_at
+            'created' => $model->getCreatedAt()
         ];
     }
 

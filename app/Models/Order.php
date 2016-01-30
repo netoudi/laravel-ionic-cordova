@@ -18,6 +18,17 @@ class Order extends Model implements Transformable
         'cupom_id'
     ];
 
+    public function getCreatedAt()
+    {
+        $date = new \DateTime($this->created_at);
+        return $date->format('c');
+    }
+
+    public function getTotalItems()
+    {
+        return count($this->items()->getResults());
+    }
+
     public function client()
     {
         return $this->belongsTo(Client::class);
