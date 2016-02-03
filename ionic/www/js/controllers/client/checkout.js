@@ -25,9 +25,9 @@ angular.module('starter.controllers')
             };
 
             $scope.save = function () {
-                var items = angular.copy($scope.items);
+                var o = {items: angular.copy($scope.items)};
 
-                angular.forEach(items, function (item) {
+                angular.forEach(o.items, function (item) {
                     item.product_id = item.id;
                 });
 
@@ -35,7 +35,11 @@ angular.module('starter.controllers')
                     template: 'Processando...'
                 });
 
-                Order.save({id: null}, {items: items}, function (data) {
+                if ($scope.cupom.value) {
+                    o.cupom_code = $scope.cupom.code;
+                }
+
+                Order.save({id: null}, o, function (data) {
                     $ionicLoading.hide();
                     $state.go('client.checkout-successful');
                 }, function (responseError) {
