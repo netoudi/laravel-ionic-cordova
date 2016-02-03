@@ -80,6 +80,7 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
                 controller: 'ClientCheckoutDetailCtrl'
             })
             .state('client.checkout-successful', {
+                cache: false,
                 url: '/checkout/successful',
                 templateUrl: 'templates/client/checkout_successful.html',
                 controller: 'ClientCheckoutSuccessfulCtrl'
