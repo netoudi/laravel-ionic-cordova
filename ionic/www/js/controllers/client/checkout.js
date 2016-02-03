@@ -1,11 +1,12 @@
 angular.module('starter.controllers')
     .controller('ClientCheckoutCtrl', [
 
-        '$scope', '$state', '$ionicLoading', '$ionicPopup', '$cart', 'Order',
+        '$scope', '$state', '$ionicLoading', '$ionicPopup', '$cart', 'Order', 'Cupom',
 
-        function ($scope, $state, $ionicLoading, $ionicPopup, $cart, Order) {
+        function ($scope, $state, $ionicLoading, $ionicPopup, $cart, Order, Cupom) {
             var cart = $cart.get();
 
+            $scope.cupom = cart.cupom;
             $scope.items = cart.items;
             $scope.total = cart.total;
 
@@ -41,10 +42,39 @@ angular.module('starter.controllers')
                     $ionicLoading.hide();
                     $ionicPopup.alert({
                         title: 'Advertência!',
-                        template: '<div class="text-centere">Pedido não realizado! Tente novamente.</div>'
+                        template: '<div class="text-center">Pedido não realizado! <br>Tente novamente.</div>'
                     });
                 });
             };
+
+            $scope.readBarCode = function () {
+                getValueCupom(518);
+            };
+
+            $scope.removeCupom = function () {
+                $cart.removeCupom();
+                $scope.cupom = $cart.get().cupom;
+                $scope.total = $cart.getTotalFinal();
+            };
+
+            function getValueCupom(code) {
+                $ionicLoading.show({
+                    template: 'Processando...'
+                });
+
+                Cupom.get({code: code}, function (data) {
+                    $cart.setCupom(data.data.code, data.data.value);
+                    $scope.cupom = $cart.get().cupom;
+                    $scope.total = $cart.getTotalFinal();
+                    $ionicLoading.hide();
+                }, function (responseError) {
+                    $ionicLoading.hide();
+                    $ionicPopup.alert({
+                        title: 'Advertência!',
+                        template: '<div class="text-center">Cupom inválido.</div>'
+                    });
+                });
+            }
         }
 
     ]);
