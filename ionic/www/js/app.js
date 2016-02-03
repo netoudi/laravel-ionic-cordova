@@ -13,7 +13,7 @@ angular.module('starter.filters', [])
 angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'starter.services', 'starter.filters', 'ngResource'])
 
     .constant('appConfig', {
-        baseUrl: 'http://localhost:8000'
+        baseUrl: 'http://192.168.0.112:8000'
     })
 
     .run(function ($ionicPlatform) {
@@ -96,7 +96,7 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
                 controller: 'ClientOrdersCtrl'
             });
 
-        //$urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/login');
 
     });
 
