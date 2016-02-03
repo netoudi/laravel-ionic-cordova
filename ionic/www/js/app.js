@@ -10,7 +10,7 @@ angular.module('starter.services', [])
 
 angular.module('starter.filters', [])
 
-angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'starter.services', 'starter.filters', 'ngResource'])
+angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'starter.services', 'starter.filters', 'ngResource', 'ngCordova'])
 
     .constant('appConfig', {
         baseUrl: 'http://192.168.0.112:8000'
