@@ -34,10 +34,10 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
         });
     })
 
-    .config(function (OAuthProvider, OAuthTokenProvider, $urlRouterProvider, $stateProvider) {
+    .config(function (OAuthProvider, OAuthTokenProvider, $urlRouterProvider, $stateProvider, $provide, appConfig) {
 
         OAuthProvider.configure({
-            baseUrl: 'http://localhost:8000',
+            baseUrl: appConfig.baseUrl,
             clientId: 'appid01',
             clientSecret: 'secret', // optional
             grantPath: '/oauth/access_token'
@@ -97,6 +97,38 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
             });
 
         $urlRouterProvider.otherwise('/login');
+
+        $provide.decorator('OAuthToken', ['$localStorage', '$delegate', function ($localStorage, $delegate) {
+            Object.defineProperties($delegate, {
+                setToken: {
+                    value: function (data) {
+                        return $localStorage.setObject('token', data);
+                    },
+                    enumerable: true,
+                    configurable: true,
+                    writable: true
+                },
+                getToken: {
+                    value: function () {
+                        return $localStorage.getObject('token');
+                    },
+                    enumerable: true,
+                    configurable: true,
+                    writable: true
+
+                },
+                removeToken: {
+                    value: function () {
+                        $localStorage.setObject('token', null);
+                    },
+                    enumerable: true,
+                    configurable: true,
+                    writable: true
+                }
+            });
+
+            return $delegate;
+        }]);
 
     });
 
