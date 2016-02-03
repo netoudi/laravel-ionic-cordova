@@ -8,12 +8,12 @@ angular.module('starter.controllers')
 
             $scope.cupom = cart.cupom;
             $scope.items = cart.items;
-            $scope.total = cart.total;
+            $scope.total = $cart.getTotalFinal();
 
             $scope.removeItem = function (i) {
                 $cart.removeItem(i);
                 $scope.items.splice(i, 1);
-                $scope.total = $cart.get().total;
+                $scope.total = $cart.getTotalFinal();
             };
 
             $scope.openListProducts = function () {
