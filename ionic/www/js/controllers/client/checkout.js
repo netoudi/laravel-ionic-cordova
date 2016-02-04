@@ -31,24 +31,32 @@ angular.module('starter.controllers')
                     item.product_id = item.id;
                 });
 
-                $ionicLoading.show({
-                    template: 'Processando...'
-                });
 
                 if ($scope.cupom.value) {
                     o.cupom_code = $scope.cupom.code;
                 }
 
-                Order.save({id: null}, o, function (data) {
-                    $ionicLoading.hide();
-                    $state.go('client.checkout-successful');
-                }, function (responseError) {
-                    $ionicLoading.hide();
+                if ($cart.getTotalFinal() <= 0) {
                     $ionicPopup.alert({
                         title: 'Advertência!',
-                        template: '<div class="text-center">Pedido não realizado! <br>Tente novamente.</div>'
+                        template: '<div class="text-center">O valor total do pedido deve ser maior que <b>zero</b>. <br>Adicione novos items ao seu pedido.</div>'
                     });
-                });
+                } else {
+                    $ionicLoading.show({
+                        template: 'Processando...'
+                    });
+
+                    Order.save({id: null}, o, function (data) {
+                        $ionicLoading.hide();
+                        $state.go('client.checkout-successful');
+                    }, function (responseError) {
+                        $ionicLoading.hide();
+                        $ionicPopup.alert({
+                            title: 'Advertência!',
+                            template: '<div class="text-center">Pedido não realizado! <br>Tente novamente.</div>'
+                        });
+                    });
+                }
             };
 
             $scope.readBarCode = function () {
