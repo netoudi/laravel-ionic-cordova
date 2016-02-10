@@ -66,7 +66,8 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
             .state('client', {
                 abstract: true,
                 url: '/client',
-                template: '<ion-nav-view/>'
+                templateUrl: 'templates/client/menu.html',
+                controller: 'ClientMenuCtrl'
             })
             .state('client.checkout', {
                 cache: false,
