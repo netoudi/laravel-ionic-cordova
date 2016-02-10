@@ -95,6 +95,11 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
                 url: '/orders',
                 templateUrl: 'templates/client/orders.html',
                 controller: 'ClientOrdersCtrl'
+            })
+            .state('client.view-order', {
+                url: '/view-order/:id',
+                templateUrl: 'templates/client/view_order.html',
+                controller: 'ClientViewOrderCtrl'
             });
 
         $urlRouterProvider.otherwise('/login');

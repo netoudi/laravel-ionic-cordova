@@ -1,0 +1,45 @@
+<ion-view>
+    <ion-nav-bar class="bar-positive">
+        <ion-nav-back-button class="button-clear">
+            <i class="ion-chevron-left"></i> Voltar
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-title>Pedido: #{{ order.id }}</ion-nav-title>
+    <bar class="bar bar-subheader">
+        <h2 class="title">Total: R$ {{ order.total }}</h2>
+    </bar>
+    <ion-content class="padding has-subheader">
+        <div class="item item-divider">
+            Data da compra: {{ order.created | dateBr }}
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="item in order.items.data">
+                <h2>{{ item.product.data.name }}</h2>
+
+                <div class="row">
+                    <div class="col">
+                        Qtd: {{ item.qtd }} <br>
+                        <i class="ion ion-cash"> {{ item.price }}</i>
+                    </div>
+                    <div class="col text-right">
+                        <i class="ion ion-social-usd"> {{ item.qtd * item.price }}</i>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <div class="item item-divider">
+            <div class="row">
+                <div class="col"><p>Subotal:</p></div>
+                <div class="col text-right"><p>R$ {{ order.total + order.cupom.data.value }}</p></div>
+            </div>
+            <div class="row">
+                <div class="col"><p>Desconto:</p></div>
+                <div class="col text-right"><p>- R$ {{ order.cupom.data.value || 0 }}</p></div>
+            </div>
+            <div class="row">
+                <div class="col"><b>Total:</b></div>
+                <div class="col text-right"><b>R$ {{ order.total }}</b></div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
