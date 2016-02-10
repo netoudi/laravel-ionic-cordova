@@ -14,7 +14,24 @@ angular.module('starter.controllers')
                 $state.go('client.view-products');
             };
 
-            Order.query({}, function (data) {
+            $scope.doRefresh = function () {
+                getOrders().then(function (data) {
+                    $scope.orders = data.data;
+                    $scope.$broadcast('scroll.refreshComplete');
+                }, function (dataError) {
+                    $scope.$broadcast('scroll.refreshComplete');
+                });
+            };
+
+            function getOrders() {
+                return Order.query({
+                    id: null,
+                    orderBy: 'created_at',
+                    sortedBy: 'desc'
+                }).$promise;
+            }
+
+            getOrders().then(function (data) {
                 $scope.orders = data.data;
                 $ionicLoading.hide();
             }, function (dataError) {

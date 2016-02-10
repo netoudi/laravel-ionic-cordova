@@ -1,9 +1,7 @@
 <ion-view>
     <ion-nav-title>Meus pedidos</ion-nav-title>
-    <div class="bar bar-balanced bar-subheader">
-        <h2 class="title"></h2>
-    </div>
-    <ion-content class="padding has-subheader">
+    <ion-content class="padding">
+        <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
         <ion-list>
             <ion-item ng-repeat="o in orders">
                 <h2>Pedido #{{ o.id }} - {{ o.created | dateBr }}</h2>
