@@ -106,7 +106,7 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
                 cache: false,
                 url: '/view-delivery/:id',
                 templateUrl: 'templates/client/view_delivery.html',
-                controller: 'ClientViewOrderCtrl'
+                controller: 'ClientViewDeliveryCtrl'
             })
 
             // DELIVERYMAN
