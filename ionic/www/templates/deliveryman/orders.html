@@ -1,0 +1,18 @@
+<ion-view>
+    <ion-nav-title>Meus pedidos</ion-nav-title>
+    <ion-content class="padding">
+        <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
+        <ion-list>
+            <ion-item ng-repeat="o in orders" ng-click="openOrderDetail(o)">
+                <h2>Pedido #{{ o.id }} - {{ o.created | dateBr }}</h2>
+
+                <p>
+                    Valor total: R$ {{ o.total }} <br>
+                    Número de items: {{ o.total_items }} <br>
+                    Status: {{ o.status | orderStatus }}
+                </p>
+            </ion-item>
+            <button class="button button-energized button-full" ng-click="openListProducts()">Fazer novo pedido</button>
+        </ion-list>
+    </ion-content>
+</ion-view>

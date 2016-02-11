@@ -100,6 +100,24 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
                 url: '/view-order/:id',
                 templateUrl: 'templates/client/view_order.html',
                 controller: 'ClientViewOrderCtrl'
+            })
+
+            // DELIVERYMAN
+            .state('deliveryman', {
+                abstract: true,
+                url: '/deliveryman',
+                templateUrl: 'templates/deliveryman/menu.html',
+                controller: 'DeliverymanMenuCtrl'
+            })
+            .state('deliveryman.orders', {
+                url: '/orders',
+                templateUrl: 'templates/deliveryman/orders.html',
+                controller: 'DeliverymanOrdersCtrl'
+            })
+            .state('deliveryman.view-order', {
+                url: '/view-order/:id',
+                templateUrl: 'templates/deliveryman/view_order.html',
+                controller: 'DeliverymanViewOrderCtrl'
             });
 
         $urlRouterProvider.otherwise('/login');
