@@ -65,6 +65,7 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
             // CLIENT
             .state('client', {
                 abstract: true,
+                cache: false,
                 url: '/client',
                 templateUrl: 'templates/client/menu.html',
                 controller: 'ClientMenuCtrl'
@@ -105,6 +106,7 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
             // DELIVERYMAN
             .state('deliveryman', {
                 abstract: true,
+                cache: false,
                 url: '/deliveryman',
                 templateUrl: 'templates/deliveryman/menu.html',
                 controller: 'DeliverymanMenuCtrl'

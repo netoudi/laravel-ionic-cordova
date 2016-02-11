@@ -1,9 +1,9 @@
 angular.module('starter.controllers')
     .controller('LoginCtrl', [
 
-        '$scope', 'OAuth', 'OAuthToken', '$ionicPopup', '$state', '$localStorage', 'User',
+        '$scope', 'OAuth', 'OAuthToken', '$ionicPopup', '$state', 'User', 'UserData',
 
-        function ($scope, OAuth, OAuthToken, $ionicPopup, $state, $localStorage, User) {
+        function ($scope, OAuth, OAuthToken, $ionicPopup, $state, User, UserData) {
 
             $scope.user = {
                 username: '',
@@ -18,10 +18,10 @@ angular.module('starter.controllers')
                         return User.authenticated({include: 'client'}).$promise;
                     })
                     .then(function (data) {
-                        $localStorage.set('user', data.data);
+                        UserData.set(data.data);
                         $state.go('client.view-products');
                     }, function (responseError) {
-                        $localStorage.set('user', null);
+                        UserData.set(null);
                         OAuthToken.removeToken();
                         $ionicPopup.alert({
                             title: 'Advertência!',
