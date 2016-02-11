@@ -18,5 +18,11 @@
             </div>
             <button type="submit" class="button button-full button-assertive">Login</button>
         </form>
+        <div class="item item-divider">
+            <h2>Logar como:</h2>
+            <button ng-click="setUser('client')" class="button button-small button-positive">Client</button>
+            <button ng-click="setUser('deliveryman')" class="button button-small button-positive">Deliveryman</button>
+            <button ng-click="setUser('admin')" class="button button-small button-positive">Admin</button>
+        </div>
     </ion-content>
 </ion-view>

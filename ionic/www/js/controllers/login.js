@@ -31,4 +31,25 @@ angular.module('starter.controllers')
                     });
             };
 
+            $scope.setUser = function (type) {
+                var username = '', password = '123456';
+
+                switch (type) {
+                    case 'client':
+                        username = 'user@user.com';
+                        break;
+                    case 'deliveryman':
+                        username = 'deliveryman@user.com';
+                        break;
+                    case 'admin':
+                        username = 'admin@user.com';
+                        break;
+                }
+
+                $scope.user = {
+                    username: username,
+                    password: password
+                };
+            };
+
         }]);
