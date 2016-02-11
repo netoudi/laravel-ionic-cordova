@@ -102,6 +102,12 @@ angular.module('starter', ['ionic', 'angular-oauth2', 'starter.controllers', 'st
                 templateUrl: 'templates/client/view_order.html',
                 controller: 'ClientViewOrderCtrl'
             })
+            .state('client.view-delivery', {
+                cache: false,
+                url: '/view-delivery/:id',
+                templateUrl: 'templates/client/view_delivery.html',
+                controller: 'ClientViewOrderCtrl'
+            })
 
             // DELIVERYMAN
             .state('deliveryman', {
