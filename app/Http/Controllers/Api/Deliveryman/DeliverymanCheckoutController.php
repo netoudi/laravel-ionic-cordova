@@ -37,7 +37,7 @@ class DeliverymanCheckoutController extends Controller
     {
         $deliverymanId = Authorizer::getResourceOwnerId();
 
-        $orders = $this->orderRepository->with('items')->scopequery(function ($query) use ($deliverymanId) {
+        $orders = $this->orderRepository->skipPresenter(false)->with('items')->scopequery(function ($query) use ($deliverymanId) {
             return $query->where('user_deliveryman_id', '=', $deliverymanId);
         })->paginate();
 
@@ -48,7 +48,7 @@ class DeliverymanCheckoutController extends Controller
     {
         $deliverymanId = Authorizer::getResourceOwnerId();
 
-        return $this->orderRepository->getByIdAndDeliveryman($orderId, $deliverymanId);
+        return $this->orderRepository->skipPresenter(false)->getByIdAndDeliveryman($orderId, $deliverymanId);
     }
 
     public function updateStatus(Request $request, $orderId)
