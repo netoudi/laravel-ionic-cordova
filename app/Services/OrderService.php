@@ -84,13 +84,15 @@ class OrderService
     {
         $order = $this->orderRepository->getByIdAndDeliveryman($orderId, $deliverymanId);
 
-        if ($order instanceof Order) {
-            $order->status = $status;
-            $order->save();
-            return $order;
+        $order->status = $status;
+
+        if ((int)($order->status) == 1 && !$order->hash) {
+            $order->hash = md5((new \DateTime())->getTimestamp());
         }
 
-        return false;
+        $order->save();
+
+        return $order;
     }
 
 }
