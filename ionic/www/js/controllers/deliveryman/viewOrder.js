@@ -1,9 +1,11 @@
 angular.module('starter.controllers')
     .controller('DeliverymanViewOrderCtrl', [
 
-        '$scope', '$ionicLoading', '$stateParams', 'DeliverymanOrder',
+        '$scope', '$ionicLoading', '$ionicPopup', '$stateParams', '$cordovaGeolocation', 'DeliverymanOrder',
 
-        function ($scope, $ionicLoading, $stateParams, DeliverymanOrder) {
+        function ($scope, $ionicLoading, $ionicPopup, $stateParams, $cordovaGeolocation, DeliverymanOrder) {
+            var watch;
+
             $scope.order = {};
 
             $ionicLoading.show({
@@ -17,6 +19,39 @@ angular.module('starter.controllers')
                 console.debug(dataError);
                 $ionicLoading.hide();
             });
+
+            $scope.goToDelivery = function () {
+                $ionicPopup.alert({
+                    title: 'Advertência!',
+                    template: '<div class="text-center">Para parar a localização dê ok.</div>'
+                }).then(function () {
+                    stopWatchPosition();
+                });
+
+                DeliverymanOrder.updateStatus({id: $stateParams.id}, {status: 1}, function () {
+                    var watchOptions = {
+                        timeout: 3000,
+                        enableHighAccuracy: false
+                    };
+
+                    watch = $cordovaGeolocation.watchPosition(watchOptions);
+
+                    watch.then(null, function (responseError) {
+                        // error
+                    }, function (position) {
+                        DeliverymanOrder.geo({id: $stateParams.id}, {
+                            lat: position.coords.latitude,
+                            long: position.coords.longitude
+                        });
+                    });
+                });
+            };
+
+            function stopWatchPosition() {
+                if (watch && typeof watch == 'object' && watch.hasOwnProperty('watchID')) {
+                    $cordovaGeolocation.clearWatch(watch.watchId);
+                }
+            }
         }
 
     ]);
