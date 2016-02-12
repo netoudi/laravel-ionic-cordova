@@ -9,10 +9,10 @@ angular.module('starter.controllers')
             $scope.order = {};
             $scope.map = {
                 center: {
-                    latitude: -23.444,
-                    longitude: -46.444
+                    latitude: 0,
+                    longitude: 0
                 },
-                zoom: 16
+                zoom: 12
             };
 
             $scope.markers = [];
@@ -35,6 +35,12 @@ angular.module('starter.controllers')
                 }
             }, function (dataError) {
                 $ionicLoading.hide();
+            });
+
+            $scope.$watch('markers.length', function (value) {
+                if (value == 2) {
+                    createBounds();
+                }
             });
 
             function initMarkers(order) {
@@ -110,6 +116,26 @@ angular.module('starter.controllers')
                         }
                     }
                 });
+            }
+
+            function createBounds() {
+                var bounds = new google.maps.LatLngBounds(), latlng;
+
+                angular.forEach($scope.markers, function (value) {
+                    latlng = new google.maps.LatLng(Number(value.coords.latitude), Number(value.coords.longitude));
+                    bounds.extend(latlng);
+                });
+
+                $scope.map.bounds = {
+                    northeast: {
+                        latitude: bounds.getNorthEast().lat(),
+                        longitude: bounds.getNorthEast().lng()
+                    },
+                    southwest: {
+                        latitude: bounds.getSouthWest().lat(),
+                        longitude: bounds.getSouthWest().lng()
+                    }
+                }
             }
         }
 
