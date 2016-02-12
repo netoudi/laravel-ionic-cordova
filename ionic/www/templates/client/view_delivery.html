@@ -43,11 +43,20 @@
         </div>
         <br>
         <ui-gmap-google-map center="map.center" zoom="map.zoom">
-            <ui-gmap-control template="button-descentralize.html" position="top-right" controller="CvdControlDescentralize" index="-1">
-            </ui-gmap-control>
-            <ui-gmap-control template="button-reload.html" position="top-right" controller="CvdControlReload" index="-1">
-            </ui-gmap-control>
-            <ui-gmap-markers models="markers" coords="'coords'" options="'options'" fit="map.fit">
+            <ui-gmap-map-control template="button-descentralize.html"
+                                 position="top-right"
+                                 controller="CvdControlDescentralize"
+                                 index="-1">
+            </ui-gmap-map-control>
+            <ui-gmap-map-control template="button-reload.html"
+                                 position="top-right"
+                                 controller="CvdControlReload"
+                                 index="-1">
+            </ui-gmap-map-control>
+            <ui-gmap-markers models="markers"
+                             coords="'coords'"
+                             options="'options'"
+                             fit="map.fit">
             </ui-gmap-markers>
         </ui-gmap-google-map>
     </ion-content>

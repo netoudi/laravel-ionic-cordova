@@ -1,9 +1,9 @@
 angular.module('starter.controllers')
     .controller('ClientViewDeliveryCtrl', [
 
-        '$scope', '$ionicLoading', '$ionicPopup', '$stateParams', '$window', '$pusher', '$map', 'ClientOrder', 'UserData',
+        '$scope', '$ionicLoading', '$ionicPopup', '$stateParams', '$window', '$pusher', '$map', 'uiGmapGoogleMapApi', 'ClientOrder', 'UserData',
 
-        function ($scope, $ionicLoading, $ionicPopup, $stateParams, $window, $pusher, $map, ClientOrder, UserData) {
+        function ($scope, $ionicLoading, $ionicPopup, $stateParams, $window, $pusher, $map, uiGmapGoogleMapApi, ClientOrder, UserData) {
             var iconUrl = "http://maps.google.com/mapfiles/kml/pal2";
 
             $scope.order = {};
@@ -15,9 +15,14 @@ angular.module('starter.controllers')
                 template: 'Carregando...'
             });
 
+            uiGmapGoogleMapApi.then(function (maps) {
+                $ionicLoading.hide();
+            }, function () {
+                $ionicLoading.hide();
+            });
+
             ClientOrder.get({id: $stateParams.id, include: 'items,cupom'}, function (data) {
                 $scope.order = data.data;
-                $ionicLoading.hide();
 
                 if ($scope.order.status == 1) {
                     initMarkers($scope.order);
@@ -27,8 +32,6 @@ angular.module('starter.controllers')
                         template: '<div class="text-center">Pedido não está em status de entrega.</div>'
                     });
                 }
-            }, function (dataError) {
-                $ionicLoading.hide();
             });
 
             $scope.$watch('markers.length', function (value) {
