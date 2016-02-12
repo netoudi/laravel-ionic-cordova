@@ -27,7 +27,7 @@ class UserController extends Controller
     {
         $userId = Authorizer::getResourceOwnerId();
 
-        $user = $this->userRepository->skipPresenter(false)->with('client')->find($userId);
+        $user = $this->userRepository->skipPresenter(false)->find($userId);
 
         return $user;
     }
