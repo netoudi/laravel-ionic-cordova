@@ -5,6 +5,7 @@ namespace CodeDelivery\Http\Controllers\Api;
 use CodeDelivery\Http\Controllers\Controller;
 use CodeDelivery\Http\Requests;
 use CodeDelivery\Repositories\UserRepository;
+use Illuminate\Http\Request;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
 class UserController extends Controller
@@ -32,4 +33,10 @@ class UserController extends Controller
         return $user;
     }
 
+    public function updateDeviceToken(Request $request)
+    {
+        $userId = Authorizer::getResourceOwnerId();
+
+        return $this->userRepository->updateDeviceToken($userId, $request->get('device_token'));
+    }
 }
