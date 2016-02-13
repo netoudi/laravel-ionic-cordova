@@ -38,7 +38,12 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'angular-oauth2', 'sta
             var push = new Ionic.Push({
                 debug: true,
                 onNotification: function (message) {
-                    console.log(message);
+                    alert(message.text);
+                },
+                publicConfig: {
+                    android: {
+                        iconColor: 'red'
+                    }
                 }
             });
             push.register(function (token) {
@@ -132,6 +137,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'angular-oauth2', 'sta
             })
             .state('deliveryman.orders', {
                 url: '/orders',
+                cache: false,
                 templateUrl: 'templates/deliveryman/orders.html',
                 controller: 'DeliverymanOrdersCtrl'
             })

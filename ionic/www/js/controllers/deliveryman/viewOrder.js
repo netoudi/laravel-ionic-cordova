@@ -1,9 +1,9 @@
 angular.module('starter.controllers')
     .controller('DeliverymanViewOrderCtrl', [
 
-        '$scope', '$ionicLoading', '$ionicPopup', '$stateParams', '$cordovaGeolocation', 'DeliverymanOrder',
+        '$scope', '$state', '$ionicLoading', '$ionicPopup', '$stateParams', '$cordovaGeolocation', 'DeliverymanOrder',
 
-        function ($scope, $ionicLoading, $ionicPopup, $stateParams, $cordovaGeolocation, DeliverymanOrder) {
+        function ($scope, $state, $ionicLoading, $ionicPopup, $stateParams, $cordovaGeolocation, DeliverymanOrder) {
             var watch;
 
             $scope.order = {};
@@ -43,6 +43,28 @@ angular.module('starter.controllers')
                             lat: position.coords.latitude,
                             long: position.coords.longitude
                         });
+                    });
+                });
+            };
+
+            $scope.okDelivery = function (order) {
+                $ionicLoading.show({
+                    template: 'Processando...'
+                });
+
+                DeliverymanOrder.updateStatus({id: order.id}, {status: 2}, function (data) {
+                    $ionicLoading.hide();
+                    $ionicPopup.alert({
+                        title: 'Advertência!',
+                        template: '<div class="text-center">Entrega finalizada com sucesso.</div>'
+                    }).then(function () {
+                        $state.go('deliveryman.orders');
+                    });
+                }, function (responseError) {
+                    $ionicLoading.hide();
+                    $ionicPopup.alert({
+                        title: 'Advertência!',
+                        template: '<div class="text-center">Não foi possível finalizar a entrega. <br>Tente mais tarde.</div>'
                     });
                 });
             };
