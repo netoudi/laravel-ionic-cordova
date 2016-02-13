@@ -7,3 +7,5 @@ Homestead.json
 .DS_Store
 composer.lock
 composer.phar
+.io-config.json
+/ionic/ionic.project
