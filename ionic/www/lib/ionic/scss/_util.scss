@@ -47,7 +47,7 @@
 }
 
 .disable-user-behavior {
-  // used to prevent the browser from doing its native behavior. this doesnt
+  // used to prevent the browser from doing its native behavior. this doesn't
   // prevent the scrolling, but cancels the contextmenu, tap highlighting, etc
 
   @include user-select(none);

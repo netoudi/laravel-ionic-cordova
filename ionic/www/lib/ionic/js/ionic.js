@@ -642,7 +642,7 @@ window.ionic.version = '1.2.4';
   // default settings
   ionic.Gestures.defaults = {
     // add css to the element to prevent the browser from doing
-    // its native behavior. this doesnt prevent the scrolling,
+    // its native behavior. this doesn't prevent the scrolling,
     // but cancels the contextmenu, tap highlighting etc
     // set to false to disable this
     stop_browser_behavior: 'disable-user-behavior'
@@ -1605,7 +1605,7 @@ window.ionic.version = '1.2.4';
    *
    * after the gesture detection session has been completed (user has released the screen)
    * the ionic.Gestures.detectionic.current object is copied into ionic.Gestures.detectionic.previous,
-   * this is usefull for gestures like doubletap, where you need to know if the
+   * this is useful for gestures like doubletap, where you need to know if the
    * previous gesture was a tap
    *
    * options that have been set by the instance can be received by calling inst.options
@@ -2114,7 +2114,7 @@ window.ionic.version = '1.2.4';
      * @description
      * Trigger a callback once the device is ready, or immediately
      * if the device is already ready. This method can be run from
-     * anywhere and does not need to be wrapped by any additonal methods.
+     * anywhere and does not need to be wrapped by any additional methods.
      * When the app is within a WebView (Cordova), it'll fire
      * the callback once the device is ready. If the app is within
      * a web browser, it'll fire the callback after `window.load`.
@@ -4403,7 +4403,7 @@ function viewportUpdate() {
           viewportProperties.height = '0';
 
         } else if (version == 7) {
-          // iPad <= 7.0 WebView Portait
+          // iPad <= 7.0 WebView Portrait
           viewportProperties.height = DEVICE_HEIGHT;
         }
       } else {
@@ -8667,7 +8667,7 @@ ionic.views.Slider = ionic.views.View.inherit({
                if(width * index - delta.x < 0) {               //We are trying scroll past left boundary
                  delta.x = Math.min(delta.x, width * index);  //Set delta.x so we don't go past left screen
                }
-               if(Math.abs(delta.x) > width * (slides.length - index - 1)){         //We are trying to scroll past right bondary
+               if(Math.abs(delta.x) > width * (slides.length - index - 1)){         //We are trying to scroll past right boundary
                  delta.x = Math.max( -width * (slides.length - index - 1), delta.x);  //Set delta.x so we don't go past right screen
                }
              }
