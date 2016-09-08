@@ -642,7 +642,7 @@ window.ionic.version = '1.2.4';
   // default settings
   ionic.Gestures.defaults = {
     // add css to the element to prevent the browser from doing
-    // its native behavior. this doesnt prevent the scrolling,
+    // its native behavior. this doesn't prevent the scrolling,
     // but cancels the contextmenu, tap highlighting etc
     // set to false to disable this
     stop_browser_behavior: 'disable-user-behavior'
