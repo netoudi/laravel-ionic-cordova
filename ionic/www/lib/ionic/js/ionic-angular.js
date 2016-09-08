@@ -8456,7 +8456,7 @@ function($scope, $element, $attrs, $compile, $rootScope) {
   };
 
   self.beforeEnter = function(ev, transData) {
-    // this event was emitted, starting at intial ion-view, then bubbles up
+    // this event was emitted, starting at initial ion-view, then bubbles up
     // only the first ion-view should do something with it, parent ion-views should ignore
     if (transData && !transData.viewNotified) {
       transData.viewNotified = true;
