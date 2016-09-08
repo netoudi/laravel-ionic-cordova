@@ -17845,7 +17845,7 @@ function $AnchorScrollProvider() {
    *
    * `yOffset` can be specified in various ways:
    * - **number**: A fixed number of pixels to be used as offset.<br /><br />
-   * - **function**: A getter function called everytime `$anchorScroll()` is executed. Must return
+   * - **function**: A getter function called every time `$anchorScroll()` is executed. Must return
    *   a number representing the offset (in pixels).<br /><br />
    * - **jqLite**: A jqLite/jQuery element to be used for specifying the offset. The distance from
    *   the top of the page to the element's bottom will be used as offset.<br />
