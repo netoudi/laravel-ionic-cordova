@@ -48849,7 +48849,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
    *   There are three squash settings:
    *
    *     - false: The parameter's default value is not squashed.  It is encoded and included in the URL
-   *     - true: The parameter's default value is omitted from the URL.  If the parameter is preceeded and followed
+   *     - true: The parameter's default value is omitted from the URL.  If the parameter is preceded and followed
    *       by slashes in the state's `url` declaration, then one of those slashes are omitted.
    *       This can allow for cleaner looking URLs.
    *     - `"<arbitrary string>"`: The parameter's default value is replaced with an arbitrary placeholder of  your choice.
