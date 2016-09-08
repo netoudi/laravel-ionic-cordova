@@ -2114,7 +2114,7 @@ window.ionic.version = '1.2.4';
      * @description
      * Trigger a callback once the device is ready, or immediately
      * if the device is already ready. This method can be run from
-     * anywhere and does not need to be wrapped by any additonal methods.
+     * anywhere and does not need to be wrapped by any additional methods.
      * When the app is within a WebView (Cordova), it'll fire
      * the callback once the device is ready. If the app is within
      * a web browser, it'll fire the callback after `window.load`.
